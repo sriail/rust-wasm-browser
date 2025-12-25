@@ -15,6 +15,16 @@ body {
     height: 100vh;
 }
 
+/* Material Icons styling */
+.icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
 .browser-container {
     display: flex;
     flex-direction: column;
@@ -63,9 +73,13 @@ body {
 }
 
 .tab-favicon {
-    font-size: 14px;
     margin-right: 8px;
     flex-shrink: 0;
+}
+
+.tab-favicon.icon {
+    width: 18px;
+    height: 18px;
 }
 
 .tab-title {
@@ -87,16 +101,18 @@ body {
     background: transparent;
     border-radius: 50%;
     cursor: pointer;
-    font-size: 14px;
-    color: #666;
     margin-left: 4px;
     flex-shrink: 0;
     transition: all 0.15s ease;
 }
 
+.tab-close .icon {
+    width: 14px;
+    height: 14px;
+}
+
 .tab-close:hover {
     background-color: #ddd;
-    color: #333;
 }
 
 .new-tab-btn {
@@ -109,10 +125,13 @@ body {
     background: transparent;
     border-radius: 50%;
     cursor: pointer;
-    font-size: 20px;
-    color: #666;
     margin-left: 4px;
     transition: all 0.15s ease;
+}
+
+.new-tab-btn .icon {
+    width: 20px;
+    height: 20px;
 }
 
 .new-tab-btn:hover {
@@ -151,9 +170,9 @@ body {
     background-color: #f0f0f0;
 }
 
-.nav-icon {
-    font-size: 18px;
-    color: #555;
+.nav-btn .icon {
+    width: 20px;
+    height: 20px;
 }
 
 .url-bar-container {
@@ -204,9 +223,9 @@ body {
     background-color: #f0f0f0;
 }
 
-.toolbar-icon {
-    font-size: 18px;
-    color: #555;
+.toolbar-btn .icon {
+    width: 22px;
+    height: 22px;
 }
 
 /* Content Area Styles */
@@ -284,8 +303,12 @@ body {
     background: transparent;
     border-radius: 50%;
     cursor: pointer;
-    font-size: 18px;
     transition: all 0.15s ease;
+}
+
+.home-search-btn .icon {
+    width: 20px;
+    height: 20px;
 }
 
 .home-search-btn:hover {
@@ -423,8 +446,12 @@ body {
     background: transparent;
     border-radius: 6px;
     cursor: pointer;
-    font-size: 14px;
     transition: all 0.15s ease;
+}
+
+.download-btn .icon {
+    width: 18px;
+    height: 18px;
 }
 
 .download-btn:hover {

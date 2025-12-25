@@ -322,7 +322,7 @@ impl Component for App {
                                 })}
                                 ondragend={link.callback(|_| Msg::DragEnd)}
                             >
-                                <span class="tab-favicon">{"🏠"}</span>
+                                <span class="tab-favicon icon icon-home"></span>
                                 <span class="tab-title">{&tab.title}</span>
                                 <button 
                                     class="tab-close"
@@ -330,24 +330,24 @@ impl Component for App {
                                         e.stop_propagation();
                                         Msg::CloseTab(close_id)
                                     })}
-                                >{"×"}</button>
+                                ><span class="icon icon-close"></span></button>
                             </div>
                         }
                     })}
-                    <button class="new-tab-btn" onclick={link.callback(|_| Msg::NewTab)}>{"+"}</button>
+                    <button class="new-tab-btn" onclick={link.callback(|_| Msg::NewTab)}><span class="icon icon-add"></span></button>
                 </div>
 
                 // Navigation Bar
                 <div class="nav-bar">
                     <div class="nav-controls">
                         <button class="nav-btn" onclick={link.callback(|_| Msg::GoBack)} title="Back">
-                            <span class="nav-icon">{"←"}</span>
+                            <span class="icon icon-arrow-back"></span>
                         </button>
                         <button class="nav-btn" onclick={link.callback(|_| Msg::GoForward)} title="Forward">
-                            <span class="nav-icon">{"→"}</span>
+                            <span class="icon icon-arrow-forward"></span>
                         </button>
                         <button class="nav-btn" onclick={link.callback(|_| Msg::Reload)} title="Reload">
-                            <span class="nav-icon">{"↻"}</span>
+                            <span class="icon icon-refresh"></span>
                         </button>
                     </div>
                     
@@ -374,13 +374,13 @@ impl Component for App {
 
                     <div class="toolbar-icons">
                         <button class="toolbar-btn" title="Search">
-                            <span class="toolbar-icon">{"🔍"}</span>
+                            <span class="icon icon-search"></span>
                         </button>
                         <button class="toolbar-btn" title="Toggle Dark Mode">
-                            <span class="toolbar-icon">{"☀"}</span>
+                            <span class="icon icon-light-mode"></span>
                         </button>
-                        <button class="toolbar-btn" onclick={link.callback(|_| Msg::GoHome)} title="Home">
-                            <span class="toolbar-icon">{"🏠"}</span>
+                        <button class="toolbar-btn home-btn" onclick={link.callback(|_| Msg::GoHome)} title="Home">
+                            <span class="icon icon-home"></span>
                         </button>
                         <button 
                             class="toolbar-btn" 
@@ -390,7 +390,7 @@ impl Component for App {
                             })}
                             title="Downloads"
                         >
-                            <span class="toolbar-icon">{"⬇"}</span>
+                            <span class="icon icon-download"></span>
                         </button>
                         <button 
                             class="toolbar-btn" 
@@ -400,7 +400,7 @@ impl Component for App {
                             })}
                             title="Settings"
                         >
-                            <span class="toolbar-icon">{"⚙"}</span>
+                            <span class="icon icon-settings"></span>
                         </button>
                     </div>
                 </div>
@@ -426,7 +426,7 @@ impl Component for App {
                                     })}
                                 />
                                 <button class="home-search-btn">
-                                    <span>{"🔍"}</span>
+                                    <span class="icon icon-search"></span>
                                 </button>
                             </div>
                         </div>
@@ -443,7 +443,7 @@ impl Component for App {
                 if self.show_settings {
                     <div class="panel settings-panel" onclick={|e: MouseEvent| e.stop_propagation()}>
                         <div class="panel-header">
-                            <span class="panel-icon">{"🔍"}</span>
+                            <span class="panel-icon icon icon-search"></span>
                             <span class="panel-title">{"Search Engine"}</span>
                         </div>
                         <div class="search-engines">
@@ -454,7 +454,7 @@ impl Component for App {
                             { self.render_search_engine_option(link, SearchEngine::Brave, "🦁", "#fb542b") }
                         </div>
                         <div class="panel-header proxy-header">
-                            <span class="panel-icon">{"📡"}</span>
+                            <span class="panel-icon icon icon-cell-tower"></span>
                             <span class="panel-title">{"Proxy Server"}</span>
                         </div>
                         <input 
@@ -474,7 +474,7 @@ impl Component for App {
                 if self.show_downloads {
                     <div class="panel downloads-panel" onclick={|e: MouseEvent| e.stop_propagation()}>
                         <div class="panel-header">
-                            <span class="panel-icon">{"⬇"}</span>
+                            <span class="panel-icon icon icon-download"></span>
                             <span class="panel-title">{"Downloads"}</span>
                         </div>
                         <div class="downloads-list">
@@ -489,12 +489,12 @@ impl Component for App {
                                                 class="download-btn"
                                                 onclick={link.callback(move |_| Msg::OpenDownloadFolder(dl_id))}
                                                 title="Open Folder"
-                                            >{"📁"}</button>
+                                            ><span class="icon icon-folder"></span></button>
                                             <button 
                                                 class="download-btn"
                                                 onclick={link.callback(move |_| Msg::DeleteDownload(dl_id2))}
                                                 title="Delete"
-                                            >{"🗑"}</button>
+                                            ><span class="icon icon-delete"></span></button>
                                         </div>
                                     </div>
                                 }
