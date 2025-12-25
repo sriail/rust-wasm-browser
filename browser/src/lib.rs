@@ -146,13 +146,7 @@ impl Component for App {
         let url_input = state.tabs
             .iter()
             .find(|t| t.id == state.active_tab_id)
-            .map(|t| {
-                if t.url == "graphite://home" {
-                    String::new()
-                } else {
-                    t.url.clone()
-                }
-            })
+            .map(|t| Self::get_display_url(&t.url))
             .unwrap_or_default();
 
         Self {
@@ -186,12 +180,7 @@ impl Component for App {
                         if self.state.active_tab_id == id {
                             let new_idx = idx.saturating_sub(1).min(self.state.tabs.len() - 1);
                             self.state.active_tab_id = self.state.tabs[new_idx].id;
-                            let new_url = &self.state.tabs[new_idx].url;
-                            self.url_input = if new_url == "graphite://home" {
-                                String::new()
-                            } else {
-                                new_url.clone()
-                            };
+                            self.url_input = Self::get_display_url(&self.state.tabs[new_idx].url);
                         }
                     }
                     self.save_state();
@@ -201,11 +190,7 @@ impl Component for App {
             Msg::SelectTab(id) => {
                 self.state.active_tab_id = id;
                 if let Some(tab) = self.state.tabs.iter().find(|t| t.id == id) {
-                    self.url_input = if tab.url == "graphite://home" {
-                        String::new()
-                    } else {
-                        tab.url.clone()
-                    };
+                    self.url_input = Self::get_display_url(&tab.url);
                 }
                 self.save_state();
                 true
@@ -526,6 +511,15 @@ impl Component for App {
 impl App {
     fn save_state(&self) {
         let _ = LocalStorage::set("graphite_state", &self.state);
+    }
+
+    /// Returns the display URL for the URL bar (empty for home page)
+    fn get_display_url(url: &str) -> String {
+        if url == "graphite://home" {
+            String::new()
+        } else {
+            url.to_string()
+        }
     }
 
     fn process_url(&self, input: &str) -> String {
