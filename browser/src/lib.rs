@@ -123,6 +123,7 @@ pub enum Msg {
     DragOver(u32),
     DragEnd,
     CloseAllPanels,
+    NoOp,
 }
 
 pub struct App {
@@ -289,6 +290,7 @@ impl Component for App {
                 self.show_downloads = false;
                 true
             }
+            Msg::NoOp => false,
         }
     }
 
@@ -364,7 +366,7 @@ impl Component for App {
                                     let input: HtmlInputElement = e.target_unchecked_into();
                                     Msg::Navigate(input.value())
                                 } else {
-                                    Msg::UpdateUrlBar(String::new())
+                                    Msg::NoOp
                                 }
                             })}
                         />
@@ -419,7 +421,7 @@ impl Component for App {
                                             let input: HtmlInputElement = e.target_unchecked_into();
                                             Msg::Navigate(input.value())
                                         } else {
-                                            Msg::UpdateUrlBar(String::new())
+                                            Msg::NoOp
                                         }
                                     })}
                                 />
