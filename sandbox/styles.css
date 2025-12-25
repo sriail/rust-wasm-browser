@@ -1,0 +1,510 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    overflow: hidden;
+}
+
+#app {
+    width: 100vw;
+    height: 100vh;
+}
+
+/* Material Icons styling */
+.icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.browser-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    background-color: #f5f5f5;
+}
+
+/* Tab Bar Styles */
+.tab-bar {
+    display: flex;
+    align-items: center;
+    background-color: #f0f0f0;
+    padding: 4px 4px 0 4px;
+    min-height: 36px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.tab {
+    display: flex;
+    align-items: center;
+    background-color: #e0e0e0;
+    border-radius: 8px 8px 0 0;
+    padding: 6px 12px;
+    margin-right: 1px;
+    cursor: pointer;
+    min-width: 120px;
+    max-width: 280px;
+    flex: 1 1 200px;
+    transition: all 0.2s ease;
+    position: relative;
+    border: 1px solid #d8d8d8;
+    border-bottom: none;
+}
+
+.tab:hover {
+    background-color: #e8e8e8;
+}
+
+.tab.active {
+    background-color: #ffffff;
+    border-color: #d0d0d0;
+    border-bottom: 1px solid #ffffff;
+    margin-bottom: -1px;
+    z-index: 1;
+}
+
+.tab-favicon {
+    margin-right: 8px;
+    flex-shrink: 0;
+}
+
+.tab-favicon.icon {
+    width: 18px;
+    height: 18px;
+}
+
+.tab-title {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 13px;
+    color: #444;
+}
+
+.tab-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border: none;
+    background: transparent;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-left: 4px;
+    flex-shrink: 0;
+    transition: all 0.15s ease;
+}
+
+.tab-close .icon {
+    width: 14px;
+    height: 14px;
+}
+
+.tab-close:hover {
+    background-color: #ddd;
+}
+
+.new-tab-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border: none;
+    background: transparent;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-left: 4px;
+    transition: all 0.15s ease;
+}
+
+.new-tab-btn .icon {
+    width: 20px;
+    height: 20px;
+}
+
+.new-tab-btn:hover {
+    background-color: #e0e0e0;
+}
+
+/* Navigation Bar Styles */
+.nav-bar {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 8px 12px;
+    gap: 8px;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.nav-controls {
+    display: flex;
+    gap: 4px;
+}
+
+.nav-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: transparent;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.nav-btn:hover {
+    background-color: #f0f0f0;
+}
+
+.nav-btn .icon {
+    width: 20px;
+    height: 20px;
+}
+
+.url-bar-container {
+    flex: 1;
+    position: relative;
+}
+
+.url-bar {
+    width: 100%;
+    padding: 8px 40px 8px 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 20px;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    outline: none;
+    background-color: #f5f5f5;
+    transition: all 0.2s ease;
+}
+
+.url-bar:focus {
+    background-color: #fff;
+    border-color: #ccc;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.url-bar::placeholder {
+    color: #999;
+}
+
+.url-bar-search-btn {
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 28px;
+    height: 28px;
+    border: none;
+    background: transparent;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.url-bar-search-btn .icon {
+    width: 18px;
+    height: 18px;
+}
+
+.toolbar-icons {
+    display: flex;
+    gap: 4px;
+}
+
+.toolbar-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border: none;
+    background: transparent;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.toolbar-btn:hover {
+    background-color: #f0f0f0;
+}
+
+.toolbar-btn .icon {
+    width: 22px;
+    height: 22px;
+}
+
+/* Content Area Styles */
+.content-area {
+    flex: 1;
+    background-color: #fff;
+    position: relative;
+    overflow: hidden;
+}
+
+.browser-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Home Page Styles */
+.home-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 40px;
+}
+
+.browser-title {
+    font-size: 72px;
+    font-weight: 300;
+    color: #ddd;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+}
+
+.browser-tagline {
+    font-size: 18px;
+    color: #bbb;
+    margin-bottom: 40px;
+    font-weight: 300;
+}
+
+.home-search-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+}
+
+.home-search {
+    width: 100%;
+    padding: 16px 50px 16px 20px;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    outline: none;
+    background-color: #f0f0f0;
+    transition: all 0.2s ease;
+}
+
+.home-search:focus {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.home-search::placeholder {
+    color: #999;
+}
+
+.home-search-btn {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 36px;
+    border: none;
+    background: transparent;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.home-search-btn .icon {
+    width: 20px;
+    height: 20px;
+}
+
+.home-search-btn:hover {
+    background-color: #e0e0e0;
+}
+
+/* Panel Styles */
+.panel {
+    position: absolute;
+    top: 85px;
+    right: 10px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    padding: 16px;
+    z-index: 1000;
+    min-width: 280px;
+}
+
+.panel-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.panel-icon {
+    font-size: 18px;
+    color: #666;
+}
+
+.panel-title {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+}
+
+.proxy-header {
+    margin-top: 16px;
+}
+
+/* Settings Panel Styles */
+.settings-panel {
+    right: 10px;
+}
+
+.search-engines {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.search-engine-btn {
+    width: 44px;
+    height: 44px;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    transition: all 0.15s ease;
+}
+
+.search-engine-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.search-engine-btn.selected {
+    border-color: #333;
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2);
+}
+
+.proxy-input {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    background-color: #f8f8f8;
+}
+
+.proxy-input:focus {
+    border-color: #ccc;
+    background-color: #fff;
+}
+
+.proxy-input::placeholder {
+    color: #999;
+}
+
+/* Downloads Panel Styles */
+.downloads-panel {
+    right: 50px;
+}
+
+.downloads-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.download-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+}
+
+.download-name {
+    font-size: 14px;
+    color: #333;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.download-actions {
+    display: flex;
+    gap: 4px;
+}
+
+.download-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border: none;
+    background: transparent;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.download-btn .icon {
+    width: 18px;
+    height: 18px;
+}
+
+.download-btn:hover {
+    background-color: #e8e8e8;
+}
+
+/* Drag and Drop Styles */
+.tab[dragging] {
+    opacity: 0.5;
+}
+
+/* Responsive Tab Sizing */
+@media (max-width: 800px) {
+    .tab {
+        min-width: 80px;
+        max-width: 150px;
+    }
+    
+    .tab-title {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 500px) {
+    .tab {
+        min-width: 60px;
+        max-width: 100px;
+    }
+    
+    .tab-favicon {
+        margin-right: 4px;
+    }
+}

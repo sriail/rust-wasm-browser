@@ -1,0 +1,50 @@
+[package]
+name = "graphite-browser"
+version = "0.1.0"
+edition = "2021"
+description = "A simple, sleek, modern, minimalist web browser compiled to WASM"
+
+[package.metadata.wasm-pack.profile.release]
+wasm-opt = false
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+yew = { version = "0.21", features = ["csr"] }
+wasm-bindgen = "0.2"
+wasm-bindgen-futures = "0.4"
+web-sys = { version = "0.3", features = [
+    "Window",
+    "Document",
+    "Element",
+    "HtmlElement",
+    "HtmlInputElement",
+    "HtmlIFrameElement",
+    "Event",
+    "MouseEvent",
+    "DragEvent",
+    "DataTransfer",
+    "KeyboardEvent",
+    "EventTarget",
+    "Storage",
+    "Location",
+    "History",
+    "console",
+    "CssStyleDeclaration",
+    "DomRect",
+    "HtmlCollection",
+    "Node",
+    "NodeList",
+] }
+js-sys = "0.3"
+gloo = { version = "0.11", features = ["futures", "timers", "storage", "events"] }
+gloo-net = "0.5"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+log = "0.4"
+wasm-logger = "0.2"
+
+[profile.release]
+opt-level = 3
+lto = true

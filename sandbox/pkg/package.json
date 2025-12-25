@@ -1,0 +1,16 @@
+{
+  "name": "graphite-browser",
+  "type": "module",
+  "description": "A simple, sleek, modern, minimalist web browser compiled to WASM",
+  "version": "0.1.0",
+  "files": [
+    "graphite_browser_bg.wasm",
+    "graphite_browser.js",
+    "graphite_browser.d.ts"
+  ],
+  "main": "graphite_browser.js",
+  "types": "graphite_browser.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}
