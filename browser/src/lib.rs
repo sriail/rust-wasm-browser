@@ -142,10 +142,17 @@ impl Component for App {
         let state = LocalStorage::get::<BrowserState>("graphite_state")
             .unwrap_or_default();
         
+        // Don't show graphite://home in URL bar - show empty string
         let url_input = state.tabs
             .iter()
             .find(|t| t.id == state.active_tab_id)
-            .map(|t| t.url.clone())
+            .map(|t| {
+                if t.url == "graphite://home" {
+                    String::new()
+                } else {
+                    t.url.clone()
+                }
+            })
             .unwrap_or_default();
 
         Self {
@@ -167,7 +174,7 @@ impl Component for App {
                 self.state.tabs.push(new_tab);
                 self.state.active_tab_id = self.state.next_tab_id;
                 self.state.next_tab_id += 1;
-                self.url_input = String::from("graphite://home");
+                self.url_input = String::new(); // Don't show graphite://home
                 self.save_state();
                 true
             }
@@ -179,7 +186,12 @@ impl Component for App {
                         if self.state.active_tab_id == id {
                             let new_idx = idx.saturating_sub(1).min(self.state.tabs.len() - 1);
                             self.state.active_tab_id = self.state.tabs[new_idx].id;
-                            self.url_input = self.state.tabs[new_idx].url.clone();
+                            let new_url = &self.state.tabs[new_idx].url;
+                            self.url_input = if new_url == "graphite://home" {
+                                String::new()
+                            } else {
+                                new_url.clone()
+                            };
                         }
                     }
                     self.save_state();
@@ -189,7 +201,11 @@ impl Component for App {
             Msg::SelectTab(id) => {
                 self.state.active_tab_id = id;
                 if let Some(tab) = self.state.tabs.iter().find(|t| t.id == id) {
-                    self.url_input = tab.url.clone();
+                    self.url_input = if tab.url == "graphite://home" {
+                        String::new()
+                    } else {
+                        tab.url.clone()
+                    };
                 }
                 self.save_state();
                 true
@@ -226,7 +242,7 @@ impl Component for App {
                     tab.title = String::from("Home");
                     tab.is_loading = false;
                 }
-                self.url_input = String::from("graphite://home");
+                self.url_input = String::new(); // Don't show graphite://home
                 self.save_state();
                 true
             }
@@ -370,16 +386,16 @@ impl Component for App {
                                 }
                             })}
                         />
+                        <button class="url-bar-search-btn" title="Search">
+                            <span class="icon icon-search"></span>
+                        </button>
                     </div>
 
                     <div class="toolbar-icons">
-                        <button class="toolbar-btn" title="Search">
-                            <span class="icon icon-search"></span>
-                        </button>
                         <button class="toolbar-btn" title="Toggle Dark Mode">
                             <span class="icon icon-light-mode"></span>
                         </button>
-                        <button class="toolbar-btn home-btn" onclick={link.callback(|_| Msg::GoHome)} title="Home">
+                        <button class="toolbar-btn" onclick={link.callback(|_| Msg::GoHome)} title="Home">
                             <span class="icon icon-home"></span>
                         </button>
                         <button 
